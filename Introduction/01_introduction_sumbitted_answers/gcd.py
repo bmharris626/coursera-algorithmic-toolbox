@@ -8,7 +8,6 @@ def naive_gcd(a, b):
     return best
 
 def euclid_gcd(a, b):
-    assert a > b
     if b == 0: return a
     return euclid_gcd(b, a % b)
 
