@@ -5,22 +5,12 @@ import sys
 def IsGreaterOrEqual(digit, maxDigit):
     if maxDigit == -float('inf'): return True
     if digit == maxDigit: return True
-    for x, y in zip(str(digit), str(maxDigit)):
-        if x > y: return True
-        elif x < y: return False
-    if len(str(digit)) < len(str(maxDigit)):
-        return str(digit)[-1] >= str(maxDigit)[-1]
+    digit, maxDigit = str(digit), str(maxDigit)
+    n = min(len(digit), len(maxDigit))
+    if (digit[:n] > maxDigit[:n]): return True
+    if (digit[:n] == maxDigit[:n]) and (digit[:-n-1:-1] > maxDigit[:-n-1:-1]):
+        return True
     return False
-
-def largest_number(a):
-    res = str()
-    while len(a) > 0:
-        maxDigit = -float('inf')
-        for n in a:
-            if IsGreaterOrEqual(n, maxDigit): maxDigit = n
-        res += str(maxDigit)
-        a.remove(maxDigit)
-    return res
 
 def largest_number(a):
     res = str()
