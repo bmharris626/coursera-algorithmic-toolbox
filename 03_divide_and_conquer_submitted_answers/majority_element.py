@@ -1,12 +1,30 @@
 # Uses python3
 import sys
 
-def get_majority_element(a, left, right):
-    if left == right:
-        return -1
-    if left + 1 == right:
-        return a[left]
-    #write your code here
+def find_candidate(A):
+    candidate, count = A[0], 1
+    for element in A:
+        if candidate == element: count += 1
+        else: count -= 1
+        if count == 0:
+            candidate = element
+            count = 1
+    return candidate
+
+def get_majority_element(A, left, right):
+    candidate = find_candidate(A)
+    count = 0
+    for element in A:
+        if element == candidate: count += 1
+    if count > (right - left) / 2: return candidate
+    return -1
+
+def majority_element_naive(A):
+    for currentElement in A:
+        count = 0
+        for element in A:
+            if currentElement == element: count += 1
+        if count > len(A) / 2: return currentElement
     return -1
 
 if __name__ == '__main__':
